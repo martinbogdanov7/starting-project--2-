@@ -1,0 +1,53 @@
+<div class="product-container">
+  <h2>List s produkti:</h2>
+
+  @if (isLoading) {
+    <p class="message">Zarejdane...</p>
+  } 
+  @else if (hasError) {
+    <p class="messageerror">Hmmmm neshto se oburka, probvaite pak.</p>
+  }
+
+  @else {
+  
+  <div class="filter-bar">
+    <div class="filter-item">
+      <label for="search">Search products:</label>
+      <input id="search" type="text" placeholder="Search" [(ngModel)]="searchTerm"/>
+    </div>
+
+    <div class="filter-item">
+      <label for="categoriq">Category: </label>
+      <select id="categoriq" [(ngModel)]="selectedCategory">
+        <option value="All">All Categories</option>
+
+        @for (category of categories; track category) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+    </div>
+  
+    <div class="filter-item">
+      <label for="sortirane">Sort by:</label>
+      <select id="sortirane" [(ngModel)]="sortBy">
+        <option value="default">Default</option>
+        <option value="price-asc">Cena: Niska kum Visoka</option>
+        <option value="price-desc">Cena: isoka kum Niska</option>
+        <option value="rating-desc">Rating: Visok kum Nisuk</option>
+        <option value="name-asc">Ime: A-Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    @for (product of filteredProducts; track product.id) {
+      <app-product-details [product]="product"></app-product-details>
+    }
+
+    @empty {
+      <p class="no-results">Nqma namereni takiva produkti!</p>
+    }
+  
+  </div>
+  }
+</div>

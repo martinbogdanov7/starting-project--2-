@@ -1,0 +1,11 @@
+<div class="product-card">
+    <img [src]="product().thumbnail" [alt]="product().title" />
+    <div class="product-info">
+        <h4>{{ product().title }}</h4>
+        <p class="category">Kategoriq na produkt: {{ product().category }}</p>
+        <p class="rating">*Rating: {{ product().rating }}</p>
+        <p class="stock">Status na produkt: {{ product().stock }} br.</p>
+        <p>Opisanie: {{ product().description }}</p>
+        <p>Cena: {{ product().price }}</p>
+    </div>
+</div>
